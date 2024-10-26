@@ -1,0 +1,38 @@
+--[[
+    [RELEASE] Dahood Aimbot Arg Finder
+
+    Please Read:
+
+    - Made by andrew (dc: andrvew)
+    - Do not claim you made this code (especially directed at dahoodians).
+    - If you don't understand these instructions, do NOT ask for help.
+    - I'll update this if they decide to patch it. (probably wont)
+
+    Instructions:
+        1. When you execute the script, look for the output that starts with "UpdateMousePos". Do not use outputs that do not end with "Pos".
+        2. When you identify the correct output, simply replace the arg with the outpout that was printed.
+        3. You must repeat this process every time there is an update.
+
+    discord.gg/gzkbJbDHEa
+]]
+
+-- // Loop through all descendants of game
+for _, instance in ipairs(game:GetDescendants()) do
+
+    -- // Check if the instance is a "LocalScript" or "ModuleScript"
+    if instance:IsA("LocalScript") or instance:IsA("ModuleScript") then
+
+        -- // Get bytecode for the script
+        local bytecode = getscriptbytecode(instance)
+        local convertreadable = tostring(bytecode)
+
+        -- // Print lines starting with "Update"
+        for line in convertreadable:gmatch("%w+") do
+            if line:match("UpdateMousePos") then
+                print(line)
+            end
+        end
+
+    end
+
+end
